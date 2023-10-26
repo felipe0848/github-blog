@@ -1,17 +1,12 @@
 import { Profile } from './components/profile'
+import { SearchForm } from './components/search-form'
 import { HomeContainer } from './styles'
 
 export function Home() {
   return (
     <HomeContainer>
       <Profile />
-      <div>
-        <header>
-          <strong>Publicações</strong>
-          <p>6 publicações</p>
-        </header>
-        <input type="text" />
-      </div>
+      <SearchForm />
       <ul>
         <li>
           <header>
