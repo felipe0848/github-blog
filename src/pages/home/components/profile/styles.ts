@@ -1,12 +1,12 @@
 import styled from 'styled-components'
 
 export const ProfileContainer = styled.div`
+  margin-top: -5.5rem;
   width: 100;
   padding: 2rem;
   display: flex;
   gap: 2rem;
 
-  margin-top: 2.75rem;
   border-radius: 10px;
   background: ${(props) => props.theme['base-profile']};
   box-shadow: 0 2px 28px 0 rgba(0, 0, 0, 0.2);
