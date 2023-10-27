@@ -22,7 +22,7 @@ export function Profile() {
       <ProfileTextContainer>
         <ProfileHeader>
           <strong>{user.name}</strong>
-          <a href={user.html_url}>
+          <a href={user.html_url} target="_blank" rel="noreferrer">
             <span>GitHub</span>
             <FontAwesomeIcon icon={faArrowUpRightFromSquare} size="xs" />
           </a>

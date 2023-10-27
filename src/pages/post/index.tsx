@@ -33,7 +33,7 @@ export function Post() {
             <FontAwesomeIcon icon={faChevronLeft} size="xs" />
             <span>Voltar</span>
           </NavLink>
-          <a href={currentPost?.html_url}>
+          <a href={currentPost?.html_url} target="_blank" rel="noreferrer">
             <span>Ver no github</span>
             <FontAwesomeIcon icon={faArrowUpRightFromSquare} size="xs" />
           </a>
