@@ -40,9 +40,11 @@ export const PostCardHeader = styled.header`
     font-size: 0.875rem;
   }
 `
-export const PostCardContent = styled.p`
-  overflow: hidden;
+export const PostCardContent = styled.span`
   color: ${(props) => props.theme['base-text']};
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
   text-overflow: ellipsis;
-  white-space: normal;
 `
