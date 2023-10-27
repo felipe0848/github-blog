@@ -13,9 +13,18 @@ import {
   PostHeaderNavigation,
   PostTextContainer,
 } from './styles'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useParams } from 'react-router-dom'
+import { BlogContext } from '../../contexts/blog-context'
+import { useContext } from 'react'
+import { formatDistanceToNow } from 'date-fns'
+import ptBR from 'date-fns/locale/pt-BR'
+import Markdown from 'react-markdown'
 
 export function Post() {
+  const { numberPost } = useParams()
+  const { posts } = useContext(BlogContext)
+  const currentPost = posts.find((post) => post.number === Number(numberPost))
+
   return (
     <PostContainer>
       <PostHeaderContainer>
@@ -24,36 +33,35 @@ export function Post() {
             <FontAwesomeIcon icon={faChevronLeft} size="xs" />
             <span>Voltar</span>
           </NavLink>
-          <a href="">
+          <a href={currentPost?.html_url}>
             <span>Ver no github</span>
             <FontAwesomeIcon icon={faArrowUpRightFromSquare} size="xs" />
           </a>
         </PostHeaderNavigation>
-        <h2>JavaScript data types and data structures</h2>
+        <h2>{currentPost?.title}</h2>
         <PostHeaderFooter>
           <div>
             <FontAwesomeIcon icon={faGithub} size="1x" />
-            <p>felipe0848</p>
+            <p>{currentPost?.user.login}</p>
           </div>
           <div>
             <FontAwesomeIcon icon={faCalendar} size="1x" />
-            <p>Há 1 dia</p>
+            <p>
+              {currentPost?.created_at &&
+                formatDistanceToNow(new Date(currentPost?.created_at), {
+                  addSuffix: true,
+                  locale: ptBR,
+                })}
+            </p>
           </div>
           <div>
             <FontAwesomeIcon icon={faComment} size="1x" />
-            <p>5 comentários</p>
+            <p>{currentPost?.comments} comentários</p>
           </div>
         </PostHeaderFooter>
       </PostHeaderContainer>
       <PostTextContainer>
-        {`Programming languages all have built-in data structures, but these often differ from one language to another. This article attempts to list the built-in data structures available in JavaScript and what properties they have. These can be used to build other data structures. Wherever possible, comparisons with other languages are drawn.
-
-Dynamic typing
-JavaScript is a loosely typed and dynamic language. Variables in JavaScript are not directly associated with any particular value type, and any variable can be assigned (and re-assigned) values of all types:
-
-let foo = 42; // foo is now a number
-foo = 'bar'; // foo is now a string
-foo = true; // foo is now a boolean`}
+        <Markdown>{currentPost?.body}</Markdown>
       </PostTextContainer>
     </PostContainer>
   )
