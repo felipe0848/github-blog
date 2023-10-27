@@ -3,13 +3,16 @@ import { DefaultTheme } from './styles/themes/default'
 import { GlobalStyle } from './styles/global'
 import { BrowserRouter } from 'react-router-dom'
 import { Router } from './routes'
+import { BlogContextProvider } from './contexts/blog-context'
 
 export function App() {
   return (
     <ThemeProvider theme={DefaultTheme}>
-      <BrowserRouter>
-        <Router />
-      </BrowserRouter>
+      <BlogContextProvider>
+        <BrowserRouter>
+          <Router />
+        </BrowserRouter>
+      </BlogContextProvider>
       <GlobalStyle />
     </ThemeProvider>
   )
