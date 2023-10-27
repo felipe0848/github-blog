@@ -71,4 +71,7 @@ export const PostTextContainer = styled.div`
     background: ${(props) => props.theme['base-post']};
     white-space: break-spaces;
   }
+  a {
+    display: block;
+  }
 `
