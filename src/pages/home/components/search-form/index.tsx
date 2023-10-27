@@ -1,11 +1,13 @@
 import { SearchContainer } from './styles'
-
-export function SearchForm() {
+interface SearchFormProps {
+  totalPosts: number
+}
+export function SearchForm({ totalPosts }: SearchFormProps) {
   return (
     <SearchContainer>
       <header>
         <strong>Publicações</strong>
-        <span>6 publicações</span>
+        <span>{totalPosts} publicações</span>
       </header>
       <input type="text" placeholder="Buscar conteúdo" />
     </SearchContainer>

@@ -28,6 +28,12 @@ export const PostCard = styled.li`
   border-radius: 10px;
   background: ${(props) => props.theme['base-post']};
   padding: 2rem;
+  cursor: pointer;
+  border: 2px solid transparent;
+
+  &:hover {
+    border: 2px solid ${(props) => props.theme['base-label']};
+  }
 `
 export const PostCardHeader = styled.header`
   display: flex;

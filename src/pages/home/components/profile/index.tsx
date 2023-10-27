@@ -11,15 +11,18 @@ import {
   ProfileFooter,
   ProfileTextContainer,
 } from './styles'
+import { useContext } from 'react'
+import { BlogContext } from '../../../../contexts/blog-context'
 
 export function Profile() {
+  const { user } = useContext(BlogContext)
   return (
     <ProfileContainer>
-      <img src="https://github.com/felipe0848.png" alt="" />
+      <img src={user.avatar_url} alt="" />
       <ProfileTextContainer>
         <ProfileHeader>
-          <strong>Felipe Soares</strong>
-          <a href="https://github.com/felipe0848">
+          <strong>{user.name}</strong>
+          <a href={user.html_url}>
             <span>GitHub</span>
             <FontAwesomeIcon icon={faArrowUpRightFromSquare} size="xs" />
           </a>
@@ -31,15 +34,15 @@ export function Profile() {
         <ProfileFooter>
           <div>
             <FontAwesomeIcon icon={faGithub} size="1x" />
-            <p>felipe0848</p>
+            <p>{user.login}</p>
           </div>
           <div>
             <FontAwesomeIcon icon={faBuilding} size="1x" />
-            <p>FreeLancer</p>
+            <p>{user.company ? user.company : 'FreeLancer'}</p>
           </div>
           <div>
             <FontAwesomeIcon icon={faUserGroup} size="1x" />
-            <p>32 seguidores</p>
+            <p>{user.followers} seguidores</p>
           </div>
         </ProfileFooter>
       </ProfileTextContainer>
