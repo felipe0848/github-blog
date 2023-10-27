@@ -68,7 +68,6 @@ export function BlogContextProvider({ children }: BlogContextProviderProps) {
       return acc
     }, [])
     setPosts(allPosts)
-    console.log(allPosts)
   }
   useEffect(() => {
     fetchUser()
