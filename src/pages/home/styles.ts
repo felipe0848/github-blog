@@ -15,6 +15,9 @@ export const PostList = styled.ul`
   gap: 2rem;
   list-style: none;
   margin-top: 3rem;
+  @media (max-width: 565px) {
+    grid-template-columns: 1fr;
+  }
 `
 export const PostCard = styled.li`
   display: flex;
@@ -47,4 +50,10 @@ export const PostCardContent = styled.span`
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+  @media (max-width: 565px) {
+    -webkit-line-clamp: 7;
+  }
+  @media (max-width: 464px) {
+    -webkit-line-clamp: 6;
+  }
 `

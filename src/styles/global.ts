@@ -19,4 +19,10 @@ body, input, textarea, button{
   font-weight: 400;
   line-height: 1.6;
 }
+
+@media(max-width: 896px){
+  html{
+    font-size: 85%;
+  }
+}
 `

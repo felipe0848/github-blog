@@ -15,6 +15,10 @@ export const ProfileContainer = styled.div`
     width: 9.25em;
     height: 9.35rem;
   }
+  @media (max-width: 565px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `
 export const ProfileTextContainer = styled.div`
   flex: 1;
@@ -62,5 +66,9 @@ export const ProfileFooter = styled.footer`
     > svg {
       color: ${(props) => props.theme['base-label']};
     }
+  }
+  @media (max-width: 405px) {
+    flex-direction: column;
+    align-items: flex-start;
   }
 `
