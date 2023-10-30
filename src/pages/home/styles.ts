@@ -15,15 +15,17 @@ export const PostList = styled.ul`
   gap: 2rem;
   list-style: none;
   margin-top: 3rem;
-  @media (max-width: 565px) {
-    grid-template-columns: 1fr;
+  @media (max-width: 763px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 `
 export const PostCard = styled.li`
+  max-width: 26rem;
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
-  height: 260px;
 
   border-radius: 10px;
   background: ${(props) => props.theme['base-post']};
@@ -33,6 +35,10 @@ export const PostCard = styled.li`
 
   &:hover {
     border: 2px solid ${(props) => props.theme['base-label']};
+  }
+  @media (max-width: 763px) {
+    width: 95%;
+    max-width: max-content;
   }
 `
 export const PostCardHeader = styled.header`
