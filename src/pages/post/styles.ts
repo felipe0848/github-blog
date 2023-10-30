@@ -4,7 +4,7 @@ export const PostContainer = styled.main`
   width: 100%;
   max-width: 896px;
   padding: 0 1rem;
-  margin: 0 auto;
+  margin: 0 auto 1rem;
 `
 export const PostHeaderContainer = styled.div`
   width: 100%;
