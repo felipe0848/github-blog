@@ -24,6 +24,7 @@ interface Post {
 interface BlogContextType {
   user: User
   posts: Post[]
+  searchPost: (query: string) => void
 }
 export const BlogContext = createContext({} as BlogContextType)
 interface BlogContextProviderProps {
@@ -39,22 +40,16 @@ export function BlogContextProvider({ children }: BlogContextProviderProps) {
       response.data
     setUser({ login, avatar_url, html_url, name, company, bio, followers })
   }
-  async function fetchPosts() {
-    const response = await api.get('/repos/felipe0848/github-blog/issues')
-    const allPosts = response.data.reduce((acc: Post[], post: Post) => {
-      const {
-        html_url,
-        number,
-        title,
-        labels,
-        body,
-        created_at,
-        comments,
-        user,
-      } = post
-      acc = [
-        ...acc,
-        {
+  async function fetchPosts(filter?: string) {
+    const query = filter
+      ? `search/issues?q=${filter}%20repo:felipe0848/github-blog`
+      : `search/issues?q=%20repo:felipe0848/github-blog`
+
+    const response = await api.get(query)
+
+    const filteredPosts = response.data.items.reduce(
+      (acc: Post[], post: Post) => {
+        const {
           html_url,
           number,
           title,
@@ -63,18 +58,36 @@ export function BlogContextProvider({ children }: BlogContextProviderProps) {
           created_at,
           comments,
           user,
-        },
-      ]
-      return acc
-    }, [])
-    setPosts(allPosts)
+        } = post
+        acc = [
+          ...acc,
+          {
+            html_url,
+            number,
+            title,
+            labels,
+            body,
+            created_at,
+            comments,
+            user,
+          },
+        ]
+        return acc
+      },
+      [],
+    )
+    setPosts(filteredPosts)
+  }
+
+  function searchPost(filter: string) {
+    fetchPosts(filter)
   }
   useEffect(() => {
     fetchUser()
     fetchPosts()
   }, [])
   return (
-    <BlogContext.Provider value={{ user, posts }}>
+    <BlogContext.Provider value={{ user, posts, searchPost }}>
       {children}
     </BlogContext.Provider>
   )
